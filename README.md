@@ -1,81 +1,67 @@
-# Turborepo starter
+## About The Project
 
-This is an official starter Turborepo.
+This project is a monorepo of React NextJS with NestJS using TypeOrm and Postgress
 
-## Using this example
+### Built With
 
-Run the following command:
+This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-```sh
-npx create-turbo@latest
+- [![Next][Next.js]][Next-url]
+- [![React][React.js]][React-url]
+- [![Nest][Nest.js]][Nest-url]
+- [![TypeORM][TypeOrm.io]][Typeorm-url]
+- [![PostgreSQL][PostgreSQL]][PostgreSQL-url]
+
+<!-- GETTING STARTED -->
+
+## Getting Started
+
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+Make sure you have installed all of the following prerequisites on your development machine:
+
+- Git - [Download & Install Git](https://git-scm.com/downloads). OSX and Linux machines typically have this already installed.
+- Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager.
+- Yarn - We are using [Yarn](https://nodejs.org/en/download/) as our package management.
+- Postgres - [Download & Install PostgreSQL](https://www.postgresql.org/download/)
+
+### Quick Install
+
+1. On root of this project, run this command:
+
+```bash
+ yarn install
 ```
 
-## What's inside?
+2. Create `.env` file in root of this project and and insert your key/value pairs in the following format of `KEY=VALUE`:
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```shell
+DATABASE_HOST=YOURDBHOST
+DATABASE_PORT=YOURDBPORT
+DATABASE_USERNAME=YOURDBUSERNAME
+DATABASE_PASSWORD=YOURDBPASSWORD
+DATABASE_NAME=YOURDBNAME
 ```
 
-### Develop
+3. Run `dev` script with:
 
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
+```bash
+yarn dev
 ```
 
-### Remote Caching
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Next-url]: https://nextjs.org/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Nest.js]: https://img.shields.io/badge/nest.js-000000?style=for-the-badge&logo=nestjs&logoColor=e0234e
+[Nest-url]: https://nestjs.com/
+[Typeorm.io]: https://img.shields.io/badge/typeorm.io-000000?style=for-the-badge&logo=typeorm&logoColor=e0234e
+[Typeorm-url]: https://typeorm.io/
+[PostgreSQL]: https://img.shields.io/static/v1?style=for-the-badge&message=PostgreSQL&color=4169E1&logo=PostgreSQL&logoColor=FFFFFF&label=
+[PostgreSQL-url]: https://www.postgresql.org
