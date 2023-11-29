@@ -7,17 +7,14 @@ import {
   Box,
   Typography,
 } from "@mui/material";
-import { Brand, Color } from "../types";
 import Circle from "@uiw/react-color-circle";
+import { useAppStoreCtx } from "../context";
 
 const drawerWidth = 320;
 
-interface Props {
-  brands: Brand[];
-  colors: Color[];
-}
-
-const Drawer = ({ brands, colors }: Props) => {
+const Drawer = () => {
+  const { brands, colors, onUpdateBrandFilter, onUpdateColorFilter } =
+    useAppStoreCtx();
   return (
     <MuiDrawer
       variant="permanent"
@@ -40,6 +37,7 @@ const Drawer = ({ brands, colors }: Props) => {
         labelId="select-brand-label"
         id="select-brand-label"
         label="Brands"
+        onChange={(e) => onUpdateBrandFilter(e.target.value as number)}
       >
         {brands.map((brand) => (
           <MenuItem value={brand.id}>{brand.name}</MenuItem>
@@ -48,7 +46,13 @@ const Drawer = ({ brands, colors }: Props) => {
 
       <Box px={2} py={3}>
         {colors.length > 0 && (
-          <Circle colors={colors.map((color) => color.code)} />
+          <Circle
+            colors={colors.map((color) => color.code)}
+            onChange={(a) => {
+              let colorObj = colors.find((color) => color.code === a.hex);
+              colorObj && onUpdateColorFilter(colorObj.id);
+            }}
+          />
         )}
       </Box>
     </MuiDrawer>

@@ -14,14 +14,20 @@ import Drawer from "./components/Drawer";
 import useAppStore from "./useAppStore";
 import { useEffect } from "react";
 import Circle from "@uiw/react-color-circle";
-export default function Page(): JSX.Element {
-  const { products, brands, colors, initFetch } = useAppStore();
+import { PageProvider, useAppStoreCtx } from "./context";
+import { NextPage } from "next";
+
+const PageContainer: NextPage = () => {
+  const { products, filter, fetchProducts, initFetch } = useAppStoreCtx();
   useEffect(() => {
     initFetch();
   }, []);
+  useEffect(() => {
+    fetchProducts();
+  }, [filter]);
   return (
     <>
-      <Drawer brands={brands} colors={colors} />
+      <Drawer />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
         <Typography variant="h3">HOME</Typography>
@@ -57,4 +63,15 @@ export default function Page(): JSX.Element {
       </Box>
     </>
   );
-}
+};
+
+const Page: NextPage = () => {
+  const store = useAppStore();
+  return (
+    <PageProvider value={store}>
+      <PageContainer />
+    </PageProvider>
+  );
+};
+
+export default Page;

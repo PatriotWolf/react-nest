@@ -18,3 +18,8 @@ export interface Product {
   colors: Color[];
   brand: Brand;
 }
+
+export interface ProductFilter {
+  brand?: number;
+  color?: number;
+}

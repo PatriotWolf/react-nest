@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Product } from './product.entity';
+import { ProductQuery } from './product.type';
 
 @Injectable()
 export class ProductsService {
@@ -10,9 +11,16 @@ export class ProductsService {
     private productsRepository: Repository<Product>,
   ) {}
 
-  findAll(): Promise<Product[]> {
-    console.log(this.productsRepository);
+  async findAll(query: ProductQuery): Promise<Product[]> {
     return this.productsRepository.find({
+      where: {
+        brand: {
+          id: query.brand,
+        },
+        colors: {
+          id: query.color,
+        },
+      },
       relations: { colors: true, brand: true },
     });
   }
