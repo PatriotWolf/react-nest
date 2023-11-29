@@ -9,6 +9,7 @@ import {
   CardActions,
   Button,
   Grid,
+  Pagination,
 } from "@mui/material";
 import Drawer from "./components/Drawer";
 import useAppStore from "./useAppStore";
@@ -18,10 +19,20 @@ import { PageProvider, useAppStoreCtx } from "./context";
 import { NextPage } from "next";
 
 const PageContainer: NextPage = () => {
-  const { products, initFetch } = useAppStoreCtx();
+  const {
+    products,
+    pageData,
+    filter,
+    fetchProducts,
+    initFetch,
+    handlePageChange,
+  } = useAppStoreCtx();
   useEffect(() => {
     initFetch();
   }, []);
+  useEffect(() => {
+    fetchProducts();
+  }, [filter.page]);
   return (
     <>
       <Drawer />
@@ -57,6 +68,13 @@ const PageContainer: NextPage = () => {
               );
             })}
         </Grid>
+        {products.length > 0 && (
+          <Pagination
+            page={filter.page}
+            onChange={handlePageChange}
+            count={pageData?.lastPage}
+          />
+        )}
       </Box>
     </>
   );

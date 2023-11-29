@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Query, Post } from '@nestjs/common';
 import { ProductsService } from './product.service';
 import { Product } from './product.entity';
-import { ProductQuery } from './product.type';
+import { ProductPaginate, ProductQuery } from './product.type';
 
 @Controller('/api/products')
 export class ProductController {
@@ -9,7 +9,7 @@ export class ProductController {
 
   //get all products
   @Get()
-  async findAll(@Query() filter: ProductQuery): Promise<Product[]> {
+  async findAll(@Query() filter: ProductQuery): Promise<ProductPaginate> {
     return this.productsService.findAll(filter);
   }
 

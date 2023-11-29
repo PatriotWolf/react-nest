@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ILike, Repository } from 'typeorm';
 import { Product } from './product.entity';
-import { ProductQuery } from './product.type';
+import { ProductPaginate, ProductQuery } from './product.type';
 
 @Injectable()
 export class ProductsService {
@@ -10,9 +10,29 @@ export class ProductsService {
     @InjectRepository(Product)
     private productsRepository: Repository<Product>,
   ) {}
-
-  async findAll(query: ProductQuery): Promise<Product[]> {
-    return this.productsRepository.find({
+  paginateResponse(
+    data: [Product[], number],
+    page: number,
+    limit: number,
+  ): ProductPaginate {
+    const [result, total] = data;
+    const lastPage = Math.ceil(total / limit);
+    const nextPage = page + 1 > lastPage ? null : page + 1;
+    const prevPage = page - 1 < 1 ? null : page - 1;
+    return {
+      data: [...result],
+      count: total,
+      currentPage: page,
+      nextPage: nextPage,
+      prevPage: prevPage,
+      lastPage: lastPage,
+    };
+  }
+  async findAll(query: ProductQuery): Promise<ProductPaginate> {
+    const take = 6;
+    const page = query.page || 1;
+    const skip = (page - 1) * take;
+    const data = await this.productsRepository.findAndCount({
       where: {
         name: query.name ? ILike(`%${query.name}%`) : undefined,
         brand: {
@@ -22,8 +42,11 @@ export class ProductsService {
           id: query.color,
         },
       },
+      take,
+      skip,
       relations: { colors: true, brand: true },
     });
+    return this.paginateResponse(data, page, take);
   }
 
   findOne(id: number): Promise<Product | null> {

@@ -20,7 +20,20 @@ export interface Product {
 }
 
 export interface ProductFilter {
+  page: number;
   name?: string;
   brand?: number;
   color?: number;
+}
+
+export interface PageDetail {
+  count: number;
+  currentPage: number;
+  nextPage: number | null;
+  prevPage: number | null;
+  lastPage: number;
+}
+
+export interface ProductRemote extends PageDetail {
+  data: Product[];
 }

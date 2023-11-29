@@ -1,28 +1,36 @@
 import { useState } from "react";
-import { Brand, Color, Product, ProductFilter } from "./types";
+import {
+  Brand,
+  Color,
+  PageDetail,
+  Product,
+  ProductFilter,
+  ProductRemote,
+} from "./types";
 import axios from "axios";
+
+/**
+ *
+ * WHY NO REDUX: the reason not using redux yet as this is such a small project and no cross module data happening yet.
+ *
+ */
 
 const useAppStore = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [pageData, setPageData] = useState<PageDetail | undefined>(undefined);
   const [colors, setColors] = useState<Color[]>([]);
   const [brands, setBrands] = useState<Brand[]>([]);
-  const [filter, setFilter] = useState<ProductFilter>({});
-  const fetchProducts = async () => {
-    try {
-      let url = "http://localhost:3004/api/products";
-      const { data } = await axios.get<Product[]>(url, {
-        params: {
-          ...filter,
-        },
-      });
-      setProducts(data);
-    } catch (error) {
-      console.log(error);
-    }
+  const [filter, setFilter] = useState<ProductFilter>({ page: 1 });
+
+  const handlePageChange = (
+    _event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setFilter((prev) => ({ ...prev, page: value }));
   };
 
   const onClearFilter = () => {
-    setFilter({});
+    setFilter({ page: 1 });
   };
 
   const onUpdateBrandFilter = (key: number) => {
@@ -34,26 +42,45 @@ const useAppStore = () => {
   const onUpdateNameFilter = (key: string) => {
     setFilter((prev) => ({ ...prev, name: key }));
   };
+
+  const fetchProducts = async () => {
+    try {
+      let url = "http://localhost:3004/api/products";
+      const { data } = await axios.get<ProductRemote>(url, {
+        params: {
+          ...filter,
+        },
+      });
+      const { data: product, ...rest } = data;
+      setProducts(product);
+      setPageData(rest);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchColors = async () => {
+    try {
+      let url = "http://localhost:3004/api/colors";
+      const { data } = await axios.get<Color[]>(url);
+      setColors(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchBrands = async () => {
+    try {
+      let url = "http://localhost:3004/api/brands";
+      const { data } = await axios.get<Brand[]>(url);
+      setBrands(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const initFetch = () => {
     fetchProducts();
-    fetch("http://localhost:3004/api/colors", {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setColors(data);
-        console.log(data);
-      })
-      .catch((error) => console.log(error));
-    fetch("http://localhost:3004/api/brands", {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setBrands(data);
-        console.log(data);
-      })
-      .catch((error) => console.log(error));
+    fetchColors();
+    fetchBrands();
   };
 
   return {
@@ -61,7 +88,9 @@ const useAppStore = () => {
     colors,
     brands,
     filter,
+    pageData,
     initFetch,
+    handlePageChange,
     onClearFilter,
     fetchProducts,
     onUpdateNameFilter,
