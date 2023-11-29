@@ -9,7 +9,6 @@ export class ColorController {
   //get all colors
   @Get()
   async findAll(): Promise<Color[]> {
-    console.log(await this.colorsService.findAll());
     return this.colorsService.findAll();
   }
 

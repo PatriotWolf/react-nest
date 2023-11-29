@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmConfigService } from './database/database.config';
 import { ColorModule } from './modules/color/color.module';
+import { ProductModule } from './modules/product/product.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ColorModule } from './modules/color/color.module';
       useClass: TypeOrmConfigService,
     }),
     ColorModule,
+    ProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],

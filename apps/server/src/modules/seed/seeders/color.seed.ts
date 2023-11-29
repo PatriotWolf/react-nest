@@ -10,7 +10,6 @@ export default class ColorSeeder implements Seeder {
     private colorsRepository: Repository<Color>,
   ) {}
   public async run(): Promise<any> {
-    console.log('running');
     for (let i = 0; i < 15; i++) {
       const color = {
         name: faker.color.human(),

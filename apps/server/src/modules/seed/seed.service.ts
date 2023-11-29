@@ -1,15 +1,15 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import ColorSeeder from './seeders/color.seed';
-import { SeederInterface } from './types';
-
+import ProductSeeder from './seeders/product.seed';
 @Injectable()
 export class SeedService {
-  private readonly seeders: SeederInterface[] = [];
-  private readonly logger = new Logger(SeedService.name);
-
-  constructor(private readonly colorSeeder: ColorSeeder) {}
+  constructor(
+    private readonly colorSeeder: ColorSeeder,
+    private readonly productsSeeder: ProductSeeder,
+  ) {}
 
   async seed() {
     await this.colorSeeder.run();
+    await this.productsSeeder.run();
   }
 }
