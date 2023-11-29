@@ -20,6 +20,7 @@ export interface Product {
 }
 
 export interface ProductFilter {
+  name?: string;
   brand?: number;
   color?: number;
 }

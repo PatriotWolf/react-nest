@@ -6,6 +6,7 @@ import {
   MenuItem,
   Box,
   Typography,
+  TextField,
 } from "@mui/material";
 import Circle from "@uiw/react-color-circle";
 import { useAppStoreCtx } from "../context";
@@ -13,8 +14,14 @@ import { useAppStoreCtx } from "../context";
 const drawerWidth = 320;
 
 const Drawer = () => {
-  const { brands, colors, onUpdateBrandFilter, onUpdateColorFilter } =
-    useAppStoreCtx();
+  const {
+    brands,
+    colors,
+    filter,
+    onUpdateNameFilter,
+    onUpdateBrandFilter,
+    onUpdateColorFilter,
+  } = useAppStoreCtx();
   return (
     <MuiDrawer
       variant="permanent"
@@ -32,6 +39,15 @@ const Drawer = () => {
       <Typography my={3} variant="h4">
         Filters
       </Typography>
+      <InputLabel id="name-product-label">Product Name</InputLabel>
+      <TextField
+        id="name-product-label"
+        value={filter.name}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          onUpdateNameFilter(event.target.value);
+        }}
+      />
+
       <InputLabel id="select-brand-label">Brands</InputLabel>
       <Select
         labelId="select-brand-label"

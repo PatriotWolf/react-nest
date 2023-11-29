@@ -27,6 +27,9 @@ const useAppStore = () => {
   const onUpdateColorFilter = (key: number) => {
     setFilter((prev) => ({ ...prev, color: key }));
   };
+  const onUpdateNameFilter = (key: string) => {
+    setFilter((prev) => ({ ...prev, name: key }));
+  };
   const initFetch = () => {
     fetchProducts();
     fetch("http://localhost:3004/api/colors", {
@@ -56,6 +59,7 @@ const useAppStore = () => {
     filter,
     initFetch,
     fetchProducts,
+    onUpdateNameFilter,
     onUpdateColorFilter,
     onUpdateBrandFilter,
   };

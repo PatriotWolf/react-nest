@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { Product } from './product.entity';
 import { ProductQuery } from './product.type';
 
@@ -14,6 +14,7 @@ export class ProductsService {
   async findAll(query: ProductQuery): Promise<Product[]> {
     return this.productsRepository.find({
       where: {
+        name: query.name ? ILike(`%${query.name}%`) : undefined,
         brand: {
           id: query.brand,
         },
