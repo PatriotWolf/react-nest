@@ -15,13 +15,13 @@ import useAppStore from "./useAppStore";
 import { useEffect } from "react";
 import Circle from "@uiw/react-color-circle";
 export default function Page(): JSX.Element {
-  const { products, initFetch } = useAppStore();
+  const { products, brands, colors, initFetch } = useAppStore();
   useEffect(() => {
     initFetch();
   }, []);
   return (
     <>
-      <Drawer />
+      <Drawer brands={brands} colors={colors} />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
         <Typography variant="h3">HOME</Typography>
