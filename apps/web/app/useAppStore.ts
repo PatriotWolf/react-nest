@@ -21,6 +21,10 @@ const useAppStore = () => {
     }
   };
 
+  const onClearFilter = () => {
+    setFilter({});
+  };
+
   const onUpdateBrandFilter = (key: number) => {
     setFilter((prev) => ({ ...prev, brand: key }));
   };
@@ -58,6 +62,7 @@ const useAppStore = () => {
     brands,
     filter,
     initFetch,
+    onClearFilter,
     fetchProducts,
     onUpdateNameFilter,
     onUpdateColorFilter,

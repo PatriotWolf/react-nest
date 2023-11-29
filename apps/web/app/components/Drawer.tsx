@@ -7,6 +7,8 @@ import {
   Box,
   Typography,
   TextField,
+  Button,
+  ButtonGroup,
 } from "@mui/material";
 import Circle from "@uiw/react-color-circle";
 import { useAppStoreCtx } from "../context";
@@ -18,6 +20,8 @@ const Drawer = () => {
     brands,
     colors,
     filter,
+    fetchProducts,
+    onClearFilter,
     onUpdateNameFilter,
     onUpdateBrandFilter,
     onUpdateColorFilter,
@@ -63,6 +67,7 @@ const Drawer = () => {
       <Box px={2} py={3}>
         {colors.length > 0 && (
           <Circle
+            color={colors.find((color) => color.id === filter.color)?.code}
             colors={colors.map((color) => color.code)}
             onChange={(a) => {
               let colorObj = colors.find((color) => color.code === a.hex);
@@ -71,6 +76,14 @@ const Drawer = () => {
           />
         )}
       </Box>
+      <ButtonGroup variant="contained">
+        <Button type="button" onClick={() => fetchProducts()} fullWidth>
+          Search
+        </Button>
+        <Button type="button" onClick={() => onClearFilter()} fullWidth>
+          Clear
+        </Button>
+      </ButtonGroup>
     </MuiDrawer>
   );
 };

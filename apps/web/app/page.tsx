@@ -18,13 +18,10 @@ import { PageProvider, useAppStoreCtx } from "./context";
 import { NextPage } from "next";
 
 const PageContainer: NextPage = () => {
-  const { products, filter, fetchProducts, initFetch } = useAppStoreCtx();
+  const { products, initFetch } = useAppStoreCtx();
   useEffect(() => {
     initFetch();
   }, []);
-  useEffect(() => {
-    fetchProducts();
-  }, [filter]);
   return (
     <>
       <Drawer />
