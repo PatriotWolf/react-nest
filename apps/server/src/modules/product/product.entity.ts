@@ -4,8 +4,10 @@ import {
   PrimaryGeneratedColumn,
   ManyToMany,
   JoinTable,
+  ManyToOne,
 } from 'typeorm';
 import { Color } from '../color/color.entity';
+import { Brand } from '../brand/brand.entity';
 
 @Entity()
 export class Product {
@@ -20,6 +22,9 @@ export class Product {
 
   @Column()
   image: string;
+
+  @ManyToOne(() => Brand, (brand) => brand)
+  brand: Brand;
 
   @ManyToMany(() => Color, { cascade: true })
   @JoinTable()

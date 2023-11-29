@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Color {
+export class Brand {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -9,5 +9,5 @@ export class Color {
   name: string;
 
   @Column()
-  code: string;
+  image: string;
 }

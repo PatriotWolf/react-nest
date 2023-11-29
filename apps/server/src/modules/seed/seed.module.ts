@@ -7,6 +7,8 @@ import { Color } from '../color/color.entity';
 import ColorSeeder from './seeders/color.seed';
 import ProductSeeder from './seeders/product.seed';
 import { Product } from '../product/product.entity';
+import { Brand } from '../brand/brand.entity';
+import BrandSeeder from './seeders/brand.seed';
 
 @Module({
   imports: [
@@ -15,9 +17,9 @@ import { Product } from '../product/product.entity';
       imports: [ConfigModule],
       useClass: TypeOrmConfigService,
     }),
-    TypeOrmModule.forFeature([Color, Product]),
+    TypeOrmModule.forFeature([Color, Product, Brand]),
   ],
   controllers: [],
-  providers: [SeedService, ColorSeeder, ProductSeeder],
+  providers: [SeedService, ColorSeeder, ProductSeeder, BrandSeeder],
 })
 export class SeedModule {}

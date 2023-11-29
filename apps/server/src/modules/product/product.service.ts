@@ -13,7 +13,7 @@ export class ProductsService {
   findAll(): Promise<Product[]> {
     console.log(this.productsRepository);
     return this.productsRepository.find({
-      relations: { colors: true },
+      relations: { colors: true, brand: true },
     });
   }
 
