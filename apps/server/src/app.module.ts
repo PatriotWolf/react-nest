@@ -3,7 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { TypeOrmConfigService } from './configs/database.config';
+import { TypeOrmConfigService } from './database/database.config';
+import { ColorModule } from './modules/color/color.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { TypeOrmConfigService } from './configs/database.config';
       imports: [ConfigModule],
       useClass: TypeOrmConfigService,
     }),
+    ColorModule,
   ],
   controllers: [AppController],
   providers: [AppService],

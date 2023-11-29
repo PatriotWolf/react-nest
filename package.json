@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
+    "seed": "dotenv -- turbo seed --scope='server'",
     "dev": "dotenv -- turbo dev --parallel --no-cache",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
