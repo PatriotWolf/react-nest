@@ -2,6 +2,19 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+import ThemeRegistry from "../components/ThemeRegistry";
+import {
+  AppBar,
+  Box,
+  Container,
+  CssBaseline,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import Image from "next/image";
+import Drawer from "./components/Drawer";
+import AppBarStyled from "./styles/AppBarSyled";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,7 +29,35 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <ThemeRegistry>
+        <CssBaseline />
+        <Box component="body" sx={{ display: "flex", height: "100vh" }}>
+          <AppBarStyled position="fixed">
+            <Container maxWidth="xl">
+              <Toolbar>
+                <Typography
+                  variant="h4"
+                  noWrap
+                  component="a"
+                  href="#app-bar-with-responsive-menu"
+                  sx={{
+                    display: { xs: "none", md: "flex" },
+
+                    fontWeight: 700,
+
+                    color: "inherit",
+                    textDecoration: "none",
+                  }}
+                >
+                  CompAsia
+                </Typography>
+              </Toolbar>
+            </Container>
+          </AppBarStyled>
+
+          {children}
+        </Box>
+      </ThemeRegistry>
     </html>
   );
 }
