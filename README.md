@@ -4,7 +4,7 @@ This project is a monorepo of React NextJS with NestJS using TypeOrm and Postgre
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This project is bootstraped with:
 
 - [![Next][Next.js]][Next-url]
 - [![React][React.js]][React-url]
@@ -25,48 +25,48 @@ Make sure you have installed all of the following prerequisites on your developm
 
 - Git - [Download & Install Git](https://git-scm.com/downloads). OSX and Linux machines typically have this already installed.
 - Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager.
-- Yarn - We are using [Yarn](https://nodejs.org/en/download/) as our package management.
+- Yarn - We are using [Yarn](https://yarnpkg.com/getting-started/install) as our package management.
 - Postgres - [Download & Install PostgreSQL](https://www.postgresql.org/download/)
 
 ### Quick Install
 
 1. On root of this project, run this command:
 
-```bash
- yarn install
-```
+   ```bash
+   yarn install
+   ```
 
 2. Create `.env` file in root of this project and and insert your key/value pairs in the following format of `KEY=VALUE`:
 
-```shell
-DATABASE_HOST=YOURDBHOST
-DATABASE_PORT=YOURDBPORT
-DATABASE_USERNAME=YOURDBUSERNAME
-DATABASE_PASSWORD=YOURDBPASSWORD
-DATABASE_NAME=YOURDBNAME
-```
+   ```shell
+   DATABASE_HOST=YOURDBHOST
+   DATABASE_PORT=YOURDBPORT
+   DATABASE_USERNAME=YOURDBUSERNAME
+   DATABASE_PASSWORD=YOURDBPASSWORD
+   DATABASE_NAME=YOURDBNAME
+   ```
 
 3. Check the database connection by run `dev` script with:
 
-```bash
-yarn dev
-```
+   ```bash
+   yarn dev
+   ```
 
-Error database connection should not be display if database config is correct.
+   Error database connection should not be display if database config is correct.
 
 4. After database connection setup success, Run `seed` script with:
 
-```bash
-yarn seed
-```
+   ```bash
+   yarn seed
+   ```
 
-This will generate 15 items on each table in database.
+   This will generate 15 items on each table in database.
 
 5. After all step above success run `dev` script and open browser with `http://localhost:3000`
 
-Enjoy!
+**Enjoy!**
 
-### TODO
+## TODO
 
 - Add category table.
 - Swagger Setup.
