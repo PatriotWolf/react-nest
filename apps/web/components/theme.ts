@@ -7,13 +7,6 @@ export const montSerrat = Montserrat({
   display: "swap",
 });
 
-export const caveat = Caveat({
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-  display: "swap",
-});
-
-console.log(caveat);
 const theme = createTheme({
   palette: {
     mode: "light",
@@ -21,7 +14,7 @@ const theme = createTheme({
     secondary: { main: "#E2ECFA" },
   },
   typography: {
-    fontFamily: `${montSerrat.style.fontFamily}, ${caveat.style.fontFamily}`,
+    fontFamily: `${montSerrat.style.fontFamily}`,
   },
   components: {
     MuiAlert: {
