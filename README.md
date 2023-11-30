@@ -46,11 +46,44 @@ DATABASE_PASSWORD=YOURDBPASSWORD
 DATABASE_NAME=YOURDBNAME
 ```
 
-3. Run `dev` script with:
+3. Check the database connection by run `dev` script with:
 
 ```bash
 yarn dev
 ```
+
+Error database connection should not be display if database config is correct.
+
+4. After database connection setup success, Run `seed` script with:
+
+```bash
+yarn seed
+```
+
+This will generate 15 items on each table in database.
+
+5. After all step above success run `dev` script and open browser with `http://localhost:3000`
+
+Enjoy!
+
+### TODO
+
+- Add category table.
+- Swagger Setup.
+- Order Feature.
+- Auth Feature.
+- Payment Feature.
+- Testing.
+- CI with github action.
+- Docker.
+- CD with AWS or Digital Ocean.
+- Jira Integration.
+- GraphQL
+- Real Time.
+- SEO.
+- Other FE framwork/library (Angular/Vue/Svelte).
+- Other ORM library (Sequelize/Prisma/Knex).
+- Other BE framwork/library (Express/Sails/Fastify/FeatherJS/Hapi).
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
